@@ -1,0 +1,93 @@
+﻿@model MapleStoryFinal0605.Models.ViewModel.MonsterSearchViewModel
+
+
+@*欄位*@
+<h1>怪物搜尋</h1>
+<hr />
+
+<div class="container-fluid">
+
+    <form asp-action="Search">
+        <div class="row">
+            <div class="col-md-2">
+                <lable class="text-danger">最低等級</lable>
+                <input asp-for="SearchParams.MinLevel" />
+            </div>
+            <div class="col-md-2">
+                <lable class="text-danger">最高等級</lable>
+                <input asp-for="SearchParams.MaxLevel" />
+            </div>
+            <div class="col-md-2">
+                <lable class="text-danger">最低血量</lable>
+                <input asp-for="SearchParams.MinHp" />
+            </div>
+            <div class="col-md-2">
+                <lable class="text-danger">最高血量</lable>
+                <input asp-for="SearchParams.MaxHp" />
+            </div>
+           @* <div class="col-md-2">
+                <lable class="text-danger">出現地區</lable>
+                <select asp-for="SearchParams.Area" asp-items="@Model.Area" class="form-control"></select>
+            </div>*@
+            <div class="col-md-2">
+            <input type="submit" value="搜尋" class="btn btn-warning" />
+            </div>
+        </div>
+
+        
+    </form>
+
+</div>
+
+@*搜尋結果*@
+<table class="table table-warning">
+    <thead>
+        <tr>
+            <th>
+                怪物名字
+            </th>
+            <th data-field="Mlevel"> 
+                等級
+            </th>
+            <th>
+                血量
+            </th>
+            <th>
+                攻擊
+            </th>
+            <th>
+                出現地區
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @*@model 宣告*@
+        @*@Model 使用*@
+        @foreach (var item in Model.Monster)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mlevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Atk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                </td>
+             
+            </tr>
+        }
+    </tbody>
+</table>
+<h2>@ViewData["Message"]</h2>
+
+
+
